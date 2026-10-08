@@ -1,0 +1,41 @@
+# Python
+.venv/
+venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+backend/venv/
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets - keep examples trackable, never commit local credentials
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Node / frontend
+node_modules/
+**/node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Test and tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs
+*.log
+uvicorn.out.log
+uvicorn.err.log
+frontend/vite-dev.log
+frontend/vite-dev.err.log
+
+# OS
+.DS_Store
+Thumbs.db
