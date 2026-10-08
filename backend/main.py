@@ -60,7 +60,7 @@ def _load_tensorflow():
 
 from backend.database import Base, engine, get_db, SessionLocal
 from backend.models import Area, SOSAlert, Incident, ensure_auth_columns, ensure_sos_columns
-from backend.auth import router as auth_router
+from backend.auth import get_current_user, router as auth_router
 from backend.sos import router as sos_router
 from backend.nlp_model import predict_incident_severity
 
@@ -1127,7 +1127,10 @@ def get_recent_incidents(limit: int = 50, db: Session = Depends(get_db)):
 # ==================== ADMIN ANALYTICS ENDPOINTS ====================
 
 @app.get("/admin/dashboard")
-def get_dashboard_analytics(db: Session = Depends(get_db)):
+def get_dashboard_analytics(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
     """
     Get comprehensive analytics for admin dashboard.
     
@@ -1200,7 +1203,10 @@ def get_dashboard_analytics(db: Session = Depends(get_db)):
 
 
 @app.get("/admin/heatmap")
-def get_heatmap_data(db: Session = Depends(get_db)):
+def get_heatmap_data(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
     """
     Get heatmap summary data for admin dashboard.
     
